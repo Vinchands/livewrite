@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Todo;
 
 class TodoList extends Component
@@ -19,7 +20,7 @@ class TodoList extends Component
             'title' => 'required|string',
         ]);
         
-        Todo::create($validated);
+        Auth::user()->todos()->create($validated);
         
         $this->title = '';
     }
@@ -67,7 +68,7 @@ class TodoList extends Component
     
     public function render()
     {
-        $query = Todo::orderBy('completed', 'asc');
+        $query = Auth::user()->todos()->orderBy('completed', 'asc');
         
         if ($this->search) $query->where(
           'title', 'LIKE', '%'.$this->search.'%'

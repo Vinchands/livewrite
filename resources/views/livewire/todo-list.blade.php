@@ -4,6 +4,15 @@
     <p class="text-sm text-black/50">Simple todo app with Livewire</p>
   </div>
   <div class="space-y-4">
+    <div class="flex items-center justify-between gap-1">
+      <p class="text-sm text-black/50">Hi, {{ auth()->user()->name }}!</p>
+      <form action="{{ route('logout') }}" method="post">
+        @csrf
+        <button type="submit" class="text-sm underline text-red-500 active:bg-secondary hover:bg-secondary">
+          Logout
+        </button>
+      </form>
+    </div>
     <div class="grid grid-cols-12 gap-1">
       <input 
         type="text" 
@@ -65,9 +74,7 @@
       </div>
     @endif
   </div>
-  <div class="text-center">
-    <p class="text-sm text-black/50">
-      &copy; 2025 <a href="https://github.com/Vinchands" class="underline text-primary">Kevin CS</a>
-    </p>
-  </div>
+  <p class="text-center text-sm text-black/50">
+    &copy; 2025 <a href="https://github.com/Vinchands" target="_blank" rel="noopener noreferrer">Kevin CS</a>
+  </p>
 </div>
